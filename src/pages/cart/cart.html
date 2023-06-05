@@ -1,0 +1,170 @@
+<div class="wrapper">
+  <TopNavbar />
+
+  <div class="container">
+    <main>
+      <div class="py-5 text-center">
+        <h1>Checkout form</h1>
+        <p class="lead"></p>
+      </div>
+
+      <div class="row g-5">
+        <div class="col-md-5 col-lg-4 order-md-last">
+          <h4 class="d-flex justify-content-between align-items-center mb-3">
+            <span class="text-primary">Корзина</span>
+            <span class="badge bg-primary rounded-pill">{{count}}</span>
+          </h4>
+          <ul class="list-group mb-3">
+            <li class="list-group-item d-flex justify-content-between lh-sm" v-for="item in contents">
+              <div>
+                <h6 class="my-0">{{item.title}}</h6>
+                <small class="text-muted">{{item.author}}</small>
+              </div>
+              <span class="text-muted"><span v-if="item.quantity > 1">{{item.quantity}}x</span> {{item.currency}}{{item.price}}</span>
+            </li>
+
+            <li class="list-group-item d-flex justify-content-between bg-light">
+              <div class="text-success">
+                <h6 class="my-0">Скидочный купон</h6>
+                <small>{{promo.code}}</small>
+              </div>
+              <span class="text-success">−{{currency.symbol}}{{promo.value}}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+              <span>К оплате ({{currency.name}})</span>
+              <strong>{{currency.symbol}}{{total}}</strong>
+            </li>
+          </ul>
+
+          <form class="card p-2">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Купон">
+              <button type="submit" class="btn btn-secondary">Применить</button>
+            </div>
+          </form>
+        </div>
+        <div class="col-md-7 col-lg-8">
+          <h4 class="mb-3">Адрес покупки</h4>
+          <form class="needs-validation" novalidate="">
+            <div class="row g-3">
+              <div class="col-sm-6">
+                <label for="firstName" class="form-label">Имя</label>
+                <input type="text" class="form-control" id="firstName" placeholder="" value="" required="">
+                <div class="invalid-feedback">
+                  Неправильное имя. Проверьте правильность написания. 
+                </div>
+              </div>
+
+              <div class="col-sm-6">
+                <label for="lastName" class="form-label">Фамилия</label>
+                <input type="text" class="form-control" id="lastName" placeholder="" value="" required="">
+                <div class="invalid-feedback">
+                  Неправильная фамилия. Проверьте правильность написания.
+                </div>
+              </div>
+
+              <div class="col-12">
+                <label for="username" class="form-label">Логин</label>
+                <div class="input-group has-validation">
+                  <span class="input-group-text">@</span>
+                  <input type="text" class="form-control" id="username" placeholder="Логин" required="">
+                  <div class="invalid-feedback">
+                    Необходим логин.
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-12">
+                <label for="email" class="form-label">Email <span class="text-muted">(Необязательно)</span></label>
+                <input type="email" class="form-control" id="email" placeholder="you@example.com">
+                <div class="invalid-feedback">
+                  Необходима почта. Проверьте правильность написания.
+                </div>
+              </div>
+
+              <div class="col-12">
+                <label for="address" class="form-label">Адрес доставки</label>
+                <input type="text" class="form-control" id="address" placeholder="город, улица" required="">
+                <div class="invalid-feedback">
+                  Пожалуйста введите адрес доставки.
+                </div>
+              </div>
+
+              <div class="col-12">
+                <label for="address2" class="form-label">Дополнительный адрес доставки <span class="text-muted">(Необязательно)</span></label>
+                <input type="text" class="form-control" id="address2" placeholder="здание">
+              </div>
+            </div>
+
+            <hr class="my-4">
+
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" id="same-address">
+              <label class="form-check-label" for="same-address">Адрес доставки совпадает с адресом покупки</label>
+            </div>
+
+            <hr class="my-4">
+
+            <h4 class="mb-3">Оплата</h4>
+
+            <div class="row gy-3">
+              <div class="col-md-6">
+                <input type="text" class="form-control" id="cc-name" placeholder="ФАМИЛИЯ ИМЯ" required="">
+                <small class="text-muted">Полное имя на карте</small>
+                <div class="invalid-feedback">
+                  Необходим владелец.
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <input type="text" class="form-control" id="cc-number" placeholder="4000 0123 4567 8910" required="">
+                <small class="text-muted">Номер карты</small>
+                <div class="invalid-feedback">
+                  Необходим номер карты.
+                </div>
+              </div>
+
+              <div class="col-md-3">
+                <input type="text" class="form-control" id="cc-expiration" placeholder="мм/гг" required="">
+                <small class="text-muted">Дата</small>
+                <div class="invalid-feedback">
+                  Необходима дата.
+                </div>
+              </div>
+
+              <div class="col-md-3">
+                <input type="text" class="form-control" id="cc-cvv" placeholder="***" required="">
+                <small class="text-muted">CVV</small>
+                <div class="invalid-feedback">
+                  Необходим код с обратной стороны.
+                </div>
+              </div>
+            </div>
+
+            <hr class="my-4">
+
+            <button class="w-100 btn btn-primary btn-lg" type="submit">Продолжить оплату</button>
+          </form>
+        </div>
+      </div>
+    </main>
+
+  </div>
+
+  <Footer />
+
+
+  <div class="parallax__layer parallax__layer--3">
+    <div id="stars" class="top-stars">&nbsp;</div>
+  </div>
+
+  <div class="parallax__layer parallax__layer--2"></div>
+
+  <div class="parallax__layer parallax__layer--2"><div id="clouds" class="top-clouds">&nbsp;</div></div>
+
+  <div class="parallax__layer parallax__layer--2" style="z-index: 1000"></div>
+
+  <div class="parallax__layer parallax__layer--1"></div>
+
+
+</div>
