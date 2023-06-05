@@ -29,15 +29,15 @@ export default {
     }),
 
     total() {
-      return Math.max(this.cartTotal - this.promo.value, 0).toFixed(2);
+      return (this.cartTotal - ((this.cartTotal / 100) * this.promo.value)).toFixed(2);
     }
   },
 
   data() {
     return {
       currency: {
-        name: 'USD',
-        symbol: '$'
+        name: 'руб.',
+        symbol: '₽'
       },
 
       promo: {
